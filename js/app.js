@@ -30,22 +30,45 @@ const allSections = document.querySelectorAll("section");;
  */
 
 
+function clickNavLink() {
+    const navLinks = document.querySelectorAll(".menu__link");
+    console.log(navLinks);
+    navLinks.forEach(navLink => {
+
+        navLink.addEventListener("click", e => {
+            const TargetLink = navLink.getAttribute("href").slice(1);
+            let goTo = 0;
+            allSections.forEach(section =>{
+                const targetSection = section.getAttribute("id");
+                if(targetSection === TargetLink){
+                    goTo = section.getBoundingClientRect().y- document.body.getBoundingClientRect().top
+                }
+            })
+            e.preventDefault();
+            window.scrollTo({
+                top: goTo,
+                left: 0,
+                behavior: 'smooth',
+                duratuion: 2000
+            })
+        })
+    })
+}
+
 // Function to add active class to link associated to current section
-function addActiveClassTolink(){
+function addActiveClassTolink() {
     const navLinks = document.querySelectorAll(".menu__link");
     navLinks.forEach(navLink => {
         const currentNav = navLink.textContent;
         currentSectionData = currentSection.getAttribute("data-nav")
-        if(currentNav === currentSectionData){
-            console.log(currentNav);
+        if (currentNav === currentSectionData) {
             navLink.classList.add("activ-link")
-        }else{
+        } else {
             navLink.classList.remove("activ-link")
-            
+
         }
-        
     })
-    
+
 }
 
 /**
@@ -55,7 +78,7 @@ function addActiveClassTolink(){
 */
 
 // build the nav
-function addNavbarItem(){
+function addNavbarItem() {
     const navbarList = document.querySelector("#navbar__list");
     allSections.forEach(section => {
         // Create new nav elements according to number of sections
@@ -68,8 +91,8 @@ function addNavbarItem(){
         navItem.appendChild(navLink);
         navbarList.appendChild(navItem);
     })
+    clickNavLink()
 
-    return allSections
 }
 
 addNavbarItem()
@@ -77,15 +100,15 @@ addNavbarItem()
 // Add class 'active' to section when near top of viewport
 // Create function that gaves me the current position of the section according to the top of the page
 
-function activeCurrentSection(e){
+function activeCurrentSection(e) {
     allSections.forEach((section, index) => {
         SectionPositionTop = section.getBoundingClientRect().top;
-        if(SectionPositionTop <= 500){
-            allSections.forEach((section) =>{
-                if(section === allSections[index]){
+        if (SectionPositionTop <= 500) {
+            allSections.forEach((section) => {
+                if (section === allSections[index]) {
                     section.classList.add("your-active-class");
                     currentSection = allSections[index]
-                }else{
+                } else {
                     section.classList.remove("your-active-class");
                     return false
                 }
