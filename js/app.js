@@ -22,7 +22,7 @@ let currentSection;
 const allSections = document.querySelectorAll("section");
 const scrollToTop = document.querySelector(".scroll-to-top");
 const navbarHeader = document.querySelector(".page__header");
-
+const submitSection = document.querySelector("#submitSection");
 
 
 /**
@@ -66,16 +66,16 @@ function goToTheTop(e) {
 // build the nav
 function addNavbarItem() {
     const navbarList = document.querySelector("#navbar__list");
-    allSections.forEach(section => {
-        // Create new nav elements according to number of sections
-        const navItem = document.createElement("li");
-        const navLink = document.createElement("a");
-        // Added a content and attributes to anchor element
-        navLink.textContent = section.getAttribute("data-nav");
-        navLink.setAttribute("href", `#${section.getAttribute("id")}`);
-        navLink.setAttribute("class", "menu__link");
-        navItem.appendChild(navLink);
-        navbarList.appendChild(navItem);
+    allSections.forEach((section,index) => {
+            // Create new nav elements according to number of sections
+            const navItem = document.createElement("li");
+            const navLink = document.createElement("a");
+            // Added a content and attributes to anchor element
+            navLink.textContent = section.getAttribute("data-nav");
+            navLink.setAttribute("href", `#${section.getAttribute("id")}`);
+            navLink.setAttribute("class", "menu__link");
+            navItem.appendChild(navLink);
+            navbarList.appendChild(navItem);
     })
     clickNavLink()
 
@@ -145,9 +145,6 @@ function activeCurrentSection(e) {
     showNavbarOnscroll();
 }
 
-// Scroll to anchor ID using scrollTO event
-
-
 /**
  * End Main Functions
  * Begin Events
@@ -156,6 +153,7 @@ function activeCurrentSection(e) {
 window.onscroll = activeCurrentSection;
 window.onresize = activeCurrentSection;
 scrollToTop.onclick = goToTheTop;
+submitSection.onclick = addNewSection;
 
 // Build menu 
 
