@@ -32,10 +32,8 @@ const navbarHeader = document.querySelector(".page__header");
  */
 
 setInterval(()=>{
-    if(window.pageYOffset > 50){
         navbarHeader.classList.add("hide__page__header")
-    }
-},2100)
+},3500)
 
 function showNavbarOnscroll(){
     navbarHeader.classList.remove("hide__page__header")
