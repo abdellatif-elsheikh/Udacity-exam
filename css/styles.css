@@ -19,6 +19,7 @@ body {
     margin: 0;
     font-family: 'Roboto', sans-serif;
     color: #fff;
+    overflow-x: hidden;
 }
 
 /* Typeography General*/
@@ -49,6 +50,40 @@ p {
 }
 
 /* ---- Layout Rules ---- */
+.scroll-to-top{
+    position: fixed;
+    width: 40px;
+    height: 40px;
+    bottom: 30px;
+    right: 16px;
+    background-color: rgb(141, 40, 161);
+    border-radius: 50%;
+    z-index: 99999;
+    cursor: pointer;
+    transform: translatex(80px);
+    transition: transform .3s ease-in;
+}
+
+.scroll-to-top::before{
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 35.5%;
+    width: 2px;
+    height: 15px;
+    background-color: #fff;
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
+.scroll-to-top::after{
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 35.5%;
+    width: 2px;
+    height: 15px;
+    background-color: #fff;
+    transform: translate(-50%, -50%) rotate(45deg);
+}
 
 main {
     margin: 10vh 1em 10vh;
@@ -61,13 +96,14 @@ main {
 
 section {
     position: relative;
-    min-height: 65vh;
+    min-height: 80vh;
 
 }
 
 /* ---- Module Rules ---- */
 
 /* Navigation Styles*/
+
 
 .navbar__menu ul {
     padding-left: 0;
@@ -107,6 +143,11 @@ section {
     top: 0;
     width: 100%;
     z-index: 5;
+    transition: transform .3s ease-in-out;
+}
+
+.hide__page__header {
+    transform: translatey(-100%);
 }
 
 /* Footer Styles */
