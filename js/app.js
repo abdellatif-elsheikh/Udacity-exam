@@ -31,11 +31,9 @@ const submitSection = document.querySelector("#submitSection");
  * 
  */
 
-setInterval(()=>{
-        navbarHeader.classList.add("hide__page__header")
-},3500)
 
-function showNavbarOnscroll(){
+
+function showNavbarOnscroll() {
     navbarHeader.classList.remove("hide__page__header")
 }
 
@@ -43,7 +41,7 @@ function showScrollButton() {
     if (window.pageYOffset > 100) {
         scrollToTop.style.transform = "translatex(0)";
     }
-    else{
+    else {
         scrollToTop.style.transform = "translatex(80px)";
     }
 }
@@ -66,16 +64,16 @@ function goToTheTop(e) {
 // build the nav
 function addNavbarItem() {
     const navbarList = document.querySelector("#navbar__list");
-    allSections.forEach((section,index) => {
-            // Create new nav elements according to number of sections
-            const navItem = document.createElement("li");
-            const navLink = document.createElement("a");
-            // Added a content and attributes to anchor element
-            navLink.textContent = section.getAttribute("data-nav");
-            navLink.setAttribute("href", `#${section.getAttribute("id")}`);
-            navLink.setAttribute("class", "menu__link");
-            navItem.appendChild(navLink);
-            navbarList.appendChild(navItem);
+    allSections.forEach((section, index) => {
+        // Create new nav elements according to number of sections
+        const navItem = document.createElement("li");
+        const navLink = document.createElement("a");
+        // Added a content and attributes to anchor element
+        navLink.textContent = section.getAttribute("data-nav");
+        navLink.setAttribute("href", `#${section.getAttribute("id")}`);
+        navLink.setAttribute("class", "menu__link");
+        navItem.appendChild(navLink);
+        navbarList.appendChild(navItem);
     })
     clickNavLink()
 
@@ -140,6 +138,10 @@ function activeCurrentSection(e) {
             })
         }
     });
+    navbarHeader.classList.remove("hide__page__header")
+    setTimeout(() => {
+        navbarHeader.classList.add("hide__page__header")
+    }, 3500)
     addActiveClassTolink();
     showScrollButton();
     showNavbarOnscroll();
