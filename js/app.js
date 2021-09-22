@@ -31,10 +31,12 @@ const submitSection = document.querySelector("#submitSection");
  * 
  */
 
-
+setInterval(()=>{
+    navbarHeader.classList.add("hide__page__header")
+},4000)
 
 function showNavbarOnscroll() {
-    navbarHeader.classList.remove("hide__page__header")
+        navbarHeader.classList.remove("hide__page__header");
 }
 
 function showScrollButton() {
@@ -70,6 +72,7 @@ function addNavbarItem() {
         const navLink = document.createElement("a");
         // Added a content and attributes to anchor element
         navLink.textContent = section.getAttribute("data-nav");
+        navLink.setAttribute("data-nav", `${section.getAttribute("id")}`);
         navLink.setAttribute("class", "menu__link");
         navItem.appendChild(navLink);
         navbarList.appendChild(navItem);
@@ -98,7 +101,7 @@ function clickNavLink() {
     const navLinks = document.querySelectorAll(".menu__link");
     navLinks.forEach(navLink => {
         navLink.addEventListener("click", e => {
-            const TargetLink = navLink.getAttribute("href").slice(1);
+            const TargetLink = navLink.getAttribute("data-nav");
             let goTo = 0;
             allSections.forEach(section => {
                 const targetSection = section.getAttribute("id");
@@ -120,6 +123,8 @@ function clickNavLink() {
 // Add class 'active' to section when near top of viewport
 // Create function that gaves me the current position of the section according to the top of the page
 
+
+
 function activeCurrentSection(e) {
     allSections.forEach((section, index) => {
         SectionPositionTop = section.getBoundingClientRect().top;
@@ -135,10 +140,7 @@ function activeCurrentSection(e) {
             })
         }
     });
-    navbarHeader.classList.remove("hide__page__header")
-    setTimeout(() => {
-        navbarHeader.classList.add("hide__page__header")
-    }, 3500)
+    
     addActiveClassTolink();
     showScrollButton();
     showNavbarOnscroll();
@@ -152,3 +154,10 @@ function activeCurrentSection(e) {
 window.onscroll = activeCurrentSection;
 window.onresize = activeCurrentSection;
 scrollToTop.onclick = goToTheTop;
+
+
+// Build menu 
+
+// Scroll to section on link click
+
+// Set sections as active
