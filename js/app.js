@@ -70,7 +70,6 @@ function addNavbarItem() {
         const navLink = document.createElement("a");
         // Added a content and attributes to anchor element
         navLink.textContent = section.getAttribute("data-nav");
-        navLink.setAttribute("href", `#${section.getAttribute("id")}`);
         navLink.setAttribute("class", "menu__link");
         navItem.appendChild(navLink);
         navbarList.appendChild(navItem);
@@ -121,8 +120,6 @@ function clickNavLink() {
 // Add class 'active' to section when near top of viewport
 // Create function that gaves me the current position of the section according to the top of the page
 
-
-
 function activeCurrentSection(e) {
     allSections.forEach((section, index) => {
         SectionPositionTop = section.getBoundingClientRect().top;
@@ -155,10 +152,3 @@ function activeCurrentSection(e) {
 window.onscroll = activeCurrentSection;
 window.onresize = activeCurrentSection;
 scrollToTop.onclick = goToTheTop;
-submitSection.onclick = addNewSection;
-
-// Build menu 
-
-// Scroll to section on link click
-
-// Set sections as active
